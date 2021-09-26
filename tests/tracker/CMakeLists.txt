@@ -9,7 +9,8 @@ add_executable(test_tracker ${SOURCE_FILES})
 target_link_libraries(test_tracker lib-traffic-monitor
         core-traffic-monitor
         ${GTEST_LIBRARIES}
-        ${OpenCV_LIBS})
+        ${OpenCV_LIBS}
+	${CMAKE_THREAD_LIBS_INIT})
 
 enable_testing()
 add_test(NAME test_tracker COMMAND test_tracker)

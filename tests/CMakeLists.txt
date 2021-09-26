@@ -3,6 +3,7 @@ project(test_traffic_monitor)
 
 find_package(GTest REQUIRED)
 find_package(OpenCV REQUIRED)
+find_package(Threads REQUIRED)
 
 include_directories(${GTEST_INCLUDE_DIRS})
 include_directories(lib)
@@ -14,6 +15,7 @@ set(SOURCE_FILES
         blob/BlobTest.cpp background_subtractor/BackgroundSubtractorTest.cpp transform/TransformTest.cpp)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 add_executable(test_traffic_monitor ${SOURCE_FILES})
+target_include_directories(test_traffic_monitor PRIVATE ${OpenCV_INCLUDE_DIRECTORIES})
 
 add_subdirectory(blob)
 add_subdirectory(background_subtractor)
@@ -22,9 +24,6 @@ add_subdirectory(tracker)
 
 include_directories(data)
 
-target_link_libraries(test_traffic_monitor ${GTEST_LIBRARIES} pthread)
-target_link_libraries(test_traffic_monitor ${OpenCV_LIBS})
-target_link_libraries(test_traffic_monitor lib-traffic-monitor)
-target_link_libraries(test_traffic_monitor core-traffic-monitor)
+target_link_libraries(test_traffic_monitor core-traffic-monitor lib-traffic-monitor ${OpenCV_LIBS} ${GTEST_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
 enable_testing()
 add_test(NAME test_traffic_monitor COMMAND test_traffic_monitor)
