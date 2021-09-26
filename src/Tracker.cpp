@@ -334,7 +334,7 @@ void Tracker::draw_blob_info_on_image(std::vector<Blob> &blobs, cv::Mat &imgFram
 }
 
 void Tracker::draw_car_count_on_image(const int &carCount, cv::Mat &imgFrame2Copy) {
-  int intFontFace = CV_FONT_HERSHEY_SIMPLEX;
+  int intFontFace = cv::FONT_HERSHEY_SIMPLEX;
   double dblFontScale = (imgFrame2Copy.rows * imgFrame2Copy.cols) / 300000.0;
   int intFontThickness = (int) std::round(dblFontScale * 1.5);
 

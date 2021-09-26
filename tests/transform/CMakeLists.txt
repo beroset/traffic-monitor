@@ -8,8 +8,7 @@ add_executable(test_transform ${SOURCE_FILES})
 
 target_link_libraries(test_transform lib-traffic-monitor
         core-traffic-monitor
-        gtest
-        gmock
+        ${GTEST_LIBRARIES}
         ${OpenCV_LIBS})
 
 enable_testing()

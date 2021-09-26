@@ -3,6 +3,7 @@ set(CMAKE_CXX_STANDARD 11)
 project(traffic-monitor)
 find_package(OpenCV REQUIRED)
 
+include_directories(${OpenCV_INCLUDE_DIRS})
 include_directories(include)
 include_directories(tests)
 include_directories(src)

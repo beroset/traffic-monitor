@@ -154,7 +154,7 @@ const int &AppConfig::get_calibration_region_area() const {
 void AppConfig::run() {
   cv::Mat img_frame_1;
   cv::VideoCapture capVideo;
-  cv::VideoWriter out_video("output.h264", CV_FOURCC('H', '2', '6', '4'), 30, cv::Size(640, 480));
+  cv::VideoWriter out_video("output.h264", cv::VideoWriter::fourcc('H', '2', '6', '4'), 30, cv::Size(640, 480));
   if (live_capture) {
     capVideo.open(0);
   } else {
@@ -168,9 +168,9 @@ void AppConfig::run() {
     return;
   }
 
-  capVideo.set(CV_CAP_PROP_FPS, get_FPS());
-  capVideo.set(CV_CAP_PROP_FRAME_WIDTH, get_FRAME_WIDTH());
-  capVideo.set(CV_CAP_PROP_FRAME_HEIGHT, get_FRAME_HEIGHT());
+  capVideo.set(cv::CAP_PROP_FPS, get_FPS());
+  capVideo.set(cv::CAP_PROP_FRAME_WIDTH, get_FRAME_WIDTH());
+  capVideo.set(cv::CAP_PROP_FRAME_HEIGHT, get_FRAME_HEIGHT());
 
   tracker.set_car_count(0);
   tracker.set_fps(get_FPS());
@@ -242,7 +242,7 @@ void AppConfig::run() {
     // Find contours (blobs) within the frame and their associated convex hull
     std::vector<std::vector<cv::Point>> contours;
     std::vector<cv::Vec4i> hierarchy;
-    cv::findContours(img_thresh, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, cv::Point(0, 0));
+    cv::findContours(img_thresh, contours, hierarchy, cv::RETR_TREE, cv::CHAIN_APPROX_SIMPLE, cv::Point(0, 0));
     std::vector<std::vector<cv::Point>> convexHulls(contours.size());
 
     /* Copyright: Chris Dahms
@@ -296,7 +296,7 @@ void AppConfig::run() {
     out_video.write(img_frame_1_copy);
 
     // If running a pre-existing video, make sure the while loop terminates once the video is over
-    if (!live_capture && capVideo.get(CV_CAP_PROP_POS_FRAMES) == capVideo.get(CV_CAP_PROP_FRAME_COUNT)) {
+    if (!live_capture && capVideo.get(cv::CAP_PROP_POS_FRAMES) == capVideo.get(cv::CAP_PROP_FRAME_COUNT)) {
       break;
     }
 

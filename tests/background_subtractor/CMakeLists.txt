@@ -10,8 +10,7 @@ add_executable(test_background_subtractor ${SOURCE_FILES})
 
 target_link_libraries(test_background_subtractor lib-traffic-monitor
         core-traffic-monitor
-        gtest
-        gmock
+        ${GTEST_LIBRARIES}
         ${OpenCV_LIBS})
 enable_testing()
 add_test(NAME test_background_subtractor COMMAND test_background_subtractor)
