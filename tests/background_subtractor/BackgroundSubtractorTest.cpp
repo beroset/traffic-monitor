@@ -15,7 +15,7 @@ TEST(BackgroundSubtractorTest, SubtractInvalidFrame) {
   BackgroundSubtractor subtractor;
   cv::Mat frame;
   cv::Mat foreground_frame;
-  ASSERT_DEATH(subtractor.subtract(frame, foreground_frame), "Assertion failed: \\(!input_frame\\.empty\\(\\).*.*");
+  ASSERT_DEATH(subtractor.subtract(frame, foreground_frame), "!input_frame\\.empty\\(\\)");
 }
 
 

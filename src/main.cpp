@@ -9,7 +9,7 @@ int main(int argc, char *argv[]) {
   std::vector<cv::Point> crossing_lines;
   std::vector<cv::Point> start_points;
   std::vector<cv::Point> end_points;
-  std::string video_path = "data/car_only.mov";
+  std::string video_path = "data/car_only.mp4";
   double fps = 30.0;
   int frame_width = 640;
   int frame_height = 480;
